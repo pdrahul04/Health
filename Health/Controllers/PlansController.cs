@@ -1,4 +1,5 @@
 ﻿using Health.Application.Commands.Plan;
+using Health.Domain.Interfaces.Queries.Plan;
 using Health.Domain.Models.Response;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -11,12 +12,69 @@ namespace Health.Controllers
     {
         private readonly IMediator _mediator;
         private readonly ILogger<PlansController> _logger;
+        private readonly IPlanQuery _planQuery;
 
         public PlansController(IMediator mediator,
-            ILogger<PlansController> logger)
+            ILogger<PlansController> logger,
+            IPlanQuery planQuery)
         {
             _mediator = mediator;
             _logger = logger;
+            _planQuery = planQuery;
+        }
+
+        /// <summary>
+        /// Get active plans only
+        /// </summary>
+        [HttpGet("active")]
+        public async Task<ActionResult<CommonResponse>> GetActivePlans()
+        {
+            _logger.LogInformation("Retrieving active plan");
+
+            try
+            {
+                var response = await _planQuery.GetActivePlans();
+
+                if (response == null)
+                {
+                    _logger.LogWarning("active plan not found");
+                    return NotFound($"active plan not found");
+                }
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving active plan");
+                return StatusCode(500, "An error occurred while retrieving the active plan");
+            }
+        }
+
+        /// <summary>
+        /// Get plan by ID
+        /// </summary>
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CommonResponse>> GetPlan(int id)
+        {
+            _logger.LogInformation("Retrieving plan {id}", id);
+
+            try
+            {
+                var response = await _planQuery.GetPlan(id);
+
+                if (response == null)
+                {
+                    _logger.LogWarning("plan {id} not found", id);
+                    return NotFound($"plan {id} not found");
+                }
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving plan {id}", id);
+                return StatusCode(500, "An error occurred while retrieving the plan");
+            }
         }
 
         #region CreatePlan

@@ -1,4 +1,7 @@
 using Health.Application.Commands.Plan;
+using Health.Application.Mappings;
+using Health.Application.Queries.Plan;
+using Health.Domain.Interfaces.Queries.Plan;
 using Health.Domain.Interfaces.Repositories;
 using Health.Infrastructure.Data;
 using Health.Infrastructure.Repositories;
@@ -27,9 +30,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-#region Repository Registration
 builder.Services.AddScoped<IPlanRepository, PlanRepository>();
-#endregion
+builder.Services.AddScoped<IPlanQuery, PlanQuery>();
 
 #region MediatR Configuration
 // Register MediatR from Application assembly (where handlers are located)
