@@ -1,4 +1,6 @@
-﻿namespace Health.Domain.Entities
+﻿using Health.Domain.Enums;
+
+namespace Health.Domain.Entities
 {
     public class ClaimEntity : BaseEntity
     {
