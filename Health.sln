@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Health.Domain", "Health.Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Health.Infrastructure", "Health.Infrastructure\Health.Infrastructure.csproj", "{790FC06A-1E9E-4BFB-A831-B923C9E92882}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D7581C9A-D3EA-4548-BCBC-4ECA0C683438}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Health.Tests", "Health.Tests\Health.Tests.csproj", "{6B88D987-AC8C-4D08-B9BA-1F751194D2E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,10 @@ Global
 		{790FC06A-1E9E-4BFB-A831-B923C9E92882}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{790FC06A-1E9E-4BFB-A831-B923C9E92882}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{790FC06A-1E9E-4BFB-A831-B923C9E92882}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B88D987-AC8C-4D08-B9BA-1F751194D2E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B88D987-AC8C-4D08-B9BA-1F751194D2E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B88D987-AC8C-4D08-B9BA-1F751194D2E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B88D987-AC8C-4D08-B9BA-1F751194D2E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +52,7 @@ Global
 		{9A153A3E-17A5-4DF4-A926-2E47F46F8B10} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{E820D2A8-BADF-4853-8697-F377819ECF3A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{790FC06A-1E9E-4BFB-A831-B923C9E92882} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{6B88D987-AC8C-4D08-B9BA-1F751194D2E0} = {D7581C9A-D3EA-4548-BCBC-4ECA0C683438}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4A15E90A-3D24-49C9-894C-6483BE7B4F3D}
