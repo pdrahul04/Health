@@ -11,10 +11,12 @@ namespace Health.Infrastructure.Data
         }
 
         public DbSet<PlanEntity> Plans { get; set; }
+        public DbSet<MemberEntity> Members { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new PlanEntityConfig());
+            builder.ApplyConfiguration(new MemberEntityConfig());
         }
     }
 }
