@@ -1,6 +1,9 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Health.Application.Commands.Plan;
 using Health.Application.Mappings;
 using Health.Application.Queries.Plan;
+using Health.Application.Validators.Plan;
 using Health.Domain.Interfaces.Queries.Plan;
 using Health.Domain.Interfaces.Repositories;
 using Health.Infrastructure.Data;
@@ -46,7 +49,10 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<PlanMappingProfile>();
 });
 #endregion
-
+#region FluentValidation Configuration
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<CreatePlanValidator>();
+#endregion
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
