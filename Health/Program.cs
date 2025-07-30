@@ -1,4 +1,7 @@
+using Health.Application.Commands.Plan;
+using Health.Domain.Interfaces.Repositories;
 using Health.Infrastructure.Data;
+using Health.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +26,24 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+#region Repository Registration
+builder.Services.AddScoped<IPlanRepository, PlanRepository>();
+#endregion
+
+#region MediatR Configuration
+// Register MediatR from Application assembly (where handlers are located)
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssemblyContaining<CreatePlanHandler>();
+});
+#endregion
+#region AutoMapper Configuration
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<PlanMappingProfile>();
+});
+#endregion
 
 var app = builder.Build();
 

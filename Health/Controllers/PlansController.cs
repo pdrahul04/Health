@@ -50,5 +50,66 @@ namespace Health.Controllers
             }
         }
         #endregion
+
+        #region UpdatePlan
+        /// <summary>
+        /// Update an existing plan
+        /// </summary>
+        [HttpPut("{id}")]
+        public async Task<ActionResult<CommonResponse>> UpdatePlan(int id, [FromBody] UpdatePlan command)
+        {
+            try
+            {
+                if (command == null)
+                {
+                    return BadRequest(new CommonResponse
+                    {
+                        Message = "Command cannot be null"
+                    });
+                }
+                var response = await _mediator.Send(command);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error updating plan");
+                return StatusCode(500, new CommonResponse
+                {
+                    Message = "An error occurred while updating the plan"
+                });
+            }
+        }
+        #endregion
+
+        #region DeletePlan
+        /// <summary>
+        /// Delete a plan
+        /// </summary>
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeletePlan(int id)
+        {
+            try
+            {
+                if (id > 0)
+                {
+                    return BadRequest(new CommonResponse
+                    {
+                        Message = "Command cannot be null"
+                    });
+                }
+                var command = new DeletePlan { Id = id };
+                var response = await _mediator.Send(command);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error updating plan");
+                return StatusCode(500, new CommonResponse
+                {
+                    Message = "An error occurred while updating the plan"
+                });
+            }
+        }
+        #endregion
     }
 }
