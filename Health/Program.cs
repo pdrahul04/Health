@@ -1,5 +1,22 @@
-var builder = WebApplication.CreateBuilder(args);
+using Health.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
+var builder = WebApplication.CreateBuilder(args);
+#region Database Configuration
+builder.Services.AddDbContext<HealthDbContext>(options =>
+{
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlOptions =>
+        {
+            sqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 3,
+                maxRetryDelay: TimeSpan.FromSeconds(5),
+                errorNumbersToAdd: null);
+            sqlOptions.CommandTimeout(30);
+        });
+});
+#endregion
 // Add services to the container.
 
 builder.Services.AddControllers();
