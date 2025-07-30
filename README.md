@@ -139,24 +139,24 @@ Git for version control
 Installation
 
 Clone the repository
-bashgit clone https://github.com/your-org/health-insurance-api.git
-cd health-insurance-api
+bashgit clone https://github.com/your-org/health-api.git
+cd health-api
 
 Create the solution structure
 bash# Create solution
-dotnet new sln -n HealthInsurance
+dotnet new sln -n Health
 
 # Create projects
 dotnet new classlib -n HealthInsurance.Domain
 dotnet new classlib -n HealthInsurance.Application  
 dotnet new classlib -n HealthInsurance.Infrastructure
-dotnet new webapi -n HealthInsurance.API
+dotnet new webapi -n Health.API
 
 # Add projects to solution
-dotnet sln add HealthInsurance.Domain
-dotnet sln add HealthInsurance.Application
-dotnet sln add HealthInsurance.Infrastructure
-dotnet sln add HealthInsurance.API
+dotnet sln add Health.Domain
+dotnet sln add Health.Application
+dotnet sln add Health.Infrastructure
+dotnet sln add Health.API
 
 Add NuGet packages
 bash# Application layer
@@ -166,20 +166,20 @@ dotnet add package FluentValidation
 dotnet add reference ../HealthInsurance.Domain
 
 # Infrastructure layer
-cd ../HealthInsurance.Infrastructure
+cd ../Health.Infrastructure
 dotnet add package Microsoft.EntityFrameworkCore
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.EntityFrameworkCore.Tools
-dotnet add reference ../HealthInsurance.Domain
+dotnet add reference ../Health.Domain
 
 # API layer
-cd ../HealthInsurance.API
+cd ../Health.API
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet add package MediatR
 dotnet add package FluentValidation.AspNetCore
 dotnet add package Swashbuckle.AspNetCore
-dotnet add reference ../HealthInsurance.Application
-dotnet add reference ../HealthInsurance.Infrastructure
+dotnet add reference ../Health.Application
+dotnet add reference ../Health.Infrastructure
 
 Configure the database connection
 Update appsettings.json in the API project:
@@ -190,7 +190,7 @@ json{
 }
 
 Build and run the application
-bashcd HealthInsurance.API
+bashcd Health.API
 dotnet build
 dotnet run
 
